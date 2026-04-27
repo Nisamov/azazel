@@ -1,0 +1,33 @@
+# Server Dockerfile for aarch64/amd64 multi-arch
+FROM node:20-alpine AS base
+
+# Install dependencies for better-sqlite3
+RUN apk add --no-cache python3 make g++
+
+WORKDIR /app
+
+# Production stage
+FROM base AS production
+
+# Create node user
+RUN addgroup -g 1000 -S node && \
+    adduser -S node -u 1000
+
+# Copy package files
+COPY server/package*.json ./
+
+# Install dependencies
+RUN npm ci --only=production
+
+# Copy source
+COPY server/dist ./dist
+COPY server/package*.json ./
+
+# Create data directory
+RUN mkdir -p /app/data && chown -R node:node /app
+
+USER node
+
+EXPOSE 3001
+
+CMD ["node", "dist/index.js"]

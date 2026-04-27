@@ -1,9 +1,0 @@
-PRETTY_NAME="Azazel OS"
-NAME="azazel"
-VERSION_ID="1.0"
-VERSION="1.0 (Testing)"
-ID=debian
-ID_LIKE=debian
-HOME_URL="https://github.com/Nisamov/azazel"
-SUPPORT_URL="https://github.com/Nisamov/azazel/issues"
-ANSI_COLOR="0;34"

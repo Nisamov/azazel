@@ -1,0 +1,21 @@
+{
+  "name": "hikarune",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Crea un espacio a tu medida.",
+  "scripts": {
+    "dev": "concurrently \"pnpm --filter client dev\" \"pnpm --filter server dev\"",
+    "build": "pnpm --filter client build && pnpm --filter server build",
+    "build:aarch64": "pnpm --filter client build && pnpm --filter server build:aarch64",
+    "start": "pnpm --filter server start",
+    "docker:build": "docker buildx build --platform linux/arm64,linux/amd64 -f docker/Dockerfile.server .",
+    "docker:up": "docker-compose -f docker/docker-compose.yml up"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  },
+  "engines": {
+    "node": ">=20.0.0",
+    "pnpm": ">=8.0.0"
+  }
+}
